@@ -91,6 +91,8 @@ func printList(l *ListNode) {
 	}
 	fmt.Println("nil")
 }
+
+// 手动测试
 func main() {
 	// 测试用例
 	l1 := intToListNode(342)

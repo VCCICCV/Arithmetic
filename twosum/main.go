@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 // PROJECT_NAME:Arithmetic
@@ -43,6 +42,8 @@ func twoSum2(nums []int, target int) []int {
 	// 不符合条件，返回 nil
 	return nil
 }
+
+// 手动测试
 func main() {
 	var len int
 	fmt.Print("Enter the number of elements in the array: ")
@@ -55,16 +56,11 @@ func main() {
 	var target int
 	fmt.Print("Enter the target number: ")
 	fmt.Scanln(&target)
-	// 获取当前时间
-	start := time.Now()
 	result := twoSum2(nums, target)
-	// 计算经过多少时间
-	elapsed := time.Since(start).Milliseconds()
 	// 根据结果输出不同的信息
 	if result == nil {
 		fmt.Println("No two elements in the array add up to the target number")
 	} else {
 		fmt.Printf("The indices of two elements in the array that add up to %d are: %v\n", target, result)
 	}
-	fmt.Printf("The elapsed time:%d", elapsed)
 }
