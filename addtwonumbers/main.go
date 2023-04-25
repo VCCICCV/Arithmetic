@@ -98,13 +98,14 @@ func main() {
 	l1 := intToListNode(342)
 	l2 := intToListNode(465)
 	expected := intToListNode(807)
-	// 计算结果
 	// 获取当前时间
 	start := time.Now()
 	result := addTwoNumbers(l1, l2)
+	//time.Sleep(time.Second * 1)
 	// 计算经过多少时间
-	elapsed := time.Since(start).Milliseconds()
-	// 比较结果和期望值
+	elapsed := time.Since(start)
+	fmt.Printf("The elapsed time:%v\n", elapsed)
+	//比较结果和期望值
 	if listNodeToInt(result) == listNodeToInt(expected) {
 		fmt.Println("测试通过")
 	} else {
@@ -114,5 +115,4 @@ func main() {
 		fmt.Println("实际值：")
 		printList(result)
 	}
-	fmt.Printf("The elapsed time:%d", elapsed)
 }

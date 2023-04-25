@@ -4,16 +4,16 @@ import (
 	"reflect"
 	"runtime"
 	"testing"
-	"time"
 )
 
 // PROJECT_NAME:Arithmetic
 // DATE:2023/4/24 14:59
 // USER:21005
+//
+// 单元测试：测试函数是否正确计算最长不重复子串
 func TestLengthOfLongestSubstring(t *testing.T) {
 	// 测试函数的内存占用
 	defer memoryUsage(t)
-	defer timeCost(time.Now(), t)
 	testCases := []struct {
 		s        string
 		expected int
@@ -28,13 +28,14 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 			t.Errorf("lengthOfLongestSubstring(%v) = %v, want %v", test.s, result, test.expected)
 		}
 	}
-
 }
 
-// 耗时统计函数
-func timeCost(start time.Time, t *testing.T) {
-	tc := time.Since(start)
-	t.Logf("time cost:%s\n", tc)
+// 压测函数：测试函数运行平均耗时
+func BenchmarkLengthOfLongestSubstring(b *testing.B) {
+	s := "abcabcbb" // 测试字符串
+	for i := 0; i < b.N; i++ {
+		lengthOfLongestSubstring(s) // 测试函数
+	}
 }
 
 // 统计内存占用

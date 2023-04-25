@@ -4,7 +4,6 @@ import (
 	"reflect"
 	"runtime"
 	"testing"
-	"time"
 )
 
 // PROJECT_NAME:Arithmetic
@@ -16,8 +15,6 @@ import (
 func TestTwoSum1(t *testing.T) {
 	// 测试函数的内存占用
 	defer memoryUsage(t)
-	defer timeCost(time.Now(), t)
-
 	// 测试用例1：正常情况
 	nums1 := []int{2, 7, 11, 15}
 	target1 := 9
@@ -25,7 +22,6 @@ func TestTwoSum1(t *testing.T) {
 	if result1 := twoSum1(nums1, target1); !equal(result1, expected1) {
 		t.Errorf("twoSum1(%v, %d) = %v; want %v", nums1, target1, result1, expected1)
 	}
-
 	// 测试用例2：空数组
 	nums2 := []int{}
 	target2 := 9
@@ -33,7 +29,6 @@ func TestTwoSum1(t *testing.T) {
 	if result2 := twoSum1(nums2, target2); !equal(result2, expected2) {
 		t.Errorf("twoSum1(%v, %d) = %v; want %v", nums2, target2, result2, expected2)
 	}
-
 	// 测试用例3：无解的数组
 	nums3 := []int{2, 7, 11, 15}
 	target3 := 10
@@ -42,7 +37,6 @@ func TestTwoSum1(t *testing.T) {
 		t.Errorf("twoSum1(%v, %d) = %v; want %v", nums3, target3, result3, expected3)
 	}
 }
-
 func equal(a, b []int) bool {
 	if len(a) != len(b) {
 		return false
@@ -55,11 +49,19 @@ func equal(a, b []int) bool {
 	return true
 }
 
+// 压测函数：测试函数运行平均耗时
+func BenchmarkTestTwoSum1(b *testing.B) {
+	nums := []int{2, 7, 11, 15} // 测试数组
+	for i := 0; i < b.N; i++ {
+		twoSum1(nums, 10) // 测试函数
+	}
+}
+
 func TestTwoSum2(t *testing.T) {
 	// 测试函数的内存占用
 	defer memoryUsage(t)
-	defer timeCost(time.Now(), t)
-
+	// 时间太短了
+	//defer timeCost(time.Now(), t)
 	testCases := []struct {
 		nums     []int
 		target   int
@@ -77,10 +79,12 @@ func TestTwoSum2(t *testing.T) {
 	}
 }
 
-// 耗时统计函数
-func timeCost(start time.Time, t *testing.T) {
-	tc := time.Since(start)
-	t.Logf("time cost:%s\n", tc)
+// 压测函数：测试函数运行平均耗时
+func BenchmarkTestTwoSum2(b *testing.B) {
+	nums := []int{2, 7, 11, 15} // 测试数组
+	for i := 0; i < b.N; i++ {
+		twoSum2(nums, 10) // 测试函数
+	}
 }
 
 // 统计内存占用
