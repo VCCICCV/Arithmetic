@@ -1,4 +1,4 @@
-package lengthoflongestsubstring
+package main
 
 import (
 	"reflect"

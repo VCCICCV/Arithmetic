@@ -1,4 +1,4 @@
-package lengthoflongestsubstring
+package main
 
 // PROJECT_NAME:Arithmetic
 // DATE:2023/4/24 14:58
@@ -8,6 +8,7 @@ func lengthOfLongestSubstring(s string) int {
 	// 哈希集合，记录每个字符是否出现过
 	m := map[byte]int{}
 	n := len(s)
+	// 定义右指针 rk 和最长的无重复字符子串的长度 ans
 	// 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
 	rk, ans := -1, 0
 	for i := 0; i < n; i++ {
